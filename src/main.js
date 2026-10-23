@@ -16,6 +16,7 @@ import 'primeicons/primeicons.css'
 import App from './App.vue'
 import router from '../router'
 import { initApiInterceptors } from '@/utils/api'
+import { initPerfDiagnostics } from '@/utils/perfDiagnostics'
 
 const app = createApp(App)
 const pinia = createPinia()
@@ -29,8 +30,10 @@ app.use(PrimeVue, {
     }
   }
 })
+
 app.use(ToastService)
 app.use(ConfirmationService)
+
 app.use(router)
 
 app.component('Button', Button)
@@ -41,6 +44,7 @@ app.component('Dialog', Dialog)
 app.component('Toast', Toast)
 app.component('ConfirmDialog', ConfirmDialog)
 
+initPerfDiagnostics()
 initApiInterceptors(router)
 
 app.mount('#app')
